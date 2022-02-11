@@ -1,18 +1,18 @@
 class App {
     initProject() {
         let backgroundMain = document.getElementById("backgroundMain");
-        let background1 = document.getElementById("background1");
+        let backgroundUL = document.getElementById("backgroundUL");
         let foreground1 = document.getElementById("foreground1");
         let foreground2 = document.getElementById("foreground2");
-        let foreground3 = document.getElementById("foreground3");
-        let backgroundCovers = document.getElementById("backgroundCovers");
+
         let backgroundAudio = new Audio('./Audio/searching.wav');
         backgroundAudio.loop = true;
 
         initItems();
         initBird();
+        makeComicDroppable();
 
-        document.getElementById("foreground2").addEventListener('mousedown', async function () {
+        document.getElementById("backgroundMain").addEventListener('mousedown', async function () {
             // Click to play audio on start
             let playPromise = backgroundAudio.play();
             if (playPromise !== undefined) {
@@ -34,7 +34,7 @@ class App {
         })
 
         let x = 0;
-        let scrollSpeed = 2;
+        let scrollSpeed = 1;
 
         document.querySelector('.left').addEventListener('mouseover', function () {
             this.iid = setInterval(function() {
@@ -42,11 +42,10 @@ class App {
                     x += scrollSpeed
                 }
                 backgroundMain.style.left = x;
-                backgroundCovers.style.left = x;
-                background1.style.left = (x * 0.9).toString();
-                foreground1.style.left = (x * 1.9).toString();
-                foreground2.style.left = (x * 1.9).toString();
-                // foreground3.style.left = (x * 1.9).toString();
+                backgroundUL.style.left = (x * 0.9).toString();
+                foreground1.style.left = (x * 1.2).toString();
+                foreground2.style.left = (x * 1.8).toString();
+
             }, 10);
         });
         document.querySelector('.left').addEventListener('mouseleave', function () {
@@ -59,11 +58,9 @@ class App {
                     x -= scrollSpeed
                 }
                 backgroundMain.style.left = x;
-                backgroundCovers.style.left = x;
-                background1.style.left = (x * 0.9).toString();
-                foreground1.style.left = (x * 1.9).toString();
-                foreground2.style.left = (x * 1.9).toString();
-                // foreground3.style.left = (x * 1.9).toString();
+                backgroundUL.style.left = (x * 0.9).toString();
+                foreground1.style.left = (x * 1.2).toString();
+                foreground2.style.left = (x * 1.8).toString();
             }, 10);
         });
         document.querySelector('.right').addEventListener('mouseleave', function () {
@@ -146,6 +143,7 @@ async function narrationInteract(bounds, title) {
 }
 
 function addInventory(title, url) {
+    playAudio("SP_into_inventory.wav");
     let inventory = document.querySelector('.inventoryItem');
     let newInventory = inventory.cloneNode(true);
     newInventory.style.background = url;
@@ -160,7 +158,6 @@ function addInventory(title, url) {
 }
 
 function handleDragStart(e) {
-    console.log("starting drag")
     console.log(e.target.title)
     e.dataTransfer.setData("text", e.target.title);
 }
@@ -196,6 +193,10 @@ async function storyComplete(title) {
     switch(title){
         case "flower":
             let flowerComic = document.getElementById("comic");
+            if (window.itemsManager.flower.complete) {
+                flowerComic.style.backgroundImage = "url('./Art/comic_002_small.png')"
+                break;
+            }
             flowerComic.style.opacity = "1";
             flowerComic.style.zIndex = "2000";
             playAudio("SP_comic_open.wav");
@@ -203,8 +204,12 @@ async function storyComplete(title) {
             flowerComic.classList.add("closable");
             break
         case "bird":
-            console.log("Complete")
-            createSpeechBubble("bird", 1160, 75, "That's it! You're so tweet. My little ones will love this!")
+            createSpeechBubble("bird", 1160, 75, "That's it! I'm the birdbrain parent in every lifetime...")
+            let photo = document.getElementById("birdComic");
+            photo.style.opacity = "1";
+            photo.style.zIndex = "1000";
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            photo.classList.add("closable")
     }
 }
 
@@ -238,6 +243,47 @@ function initItems() {
             this.style.backgroundImage = "url('" + clickedFilepath + title + ".png')"
         })
         item.addEventListener('mousedown', function () {
+            let bounds = this.getBoundingClientRect();
+            let text;
+            switch (title) {
+                case "ball" :
+                    text = window.itemsManager.ball.foundDialogue;
+                    break
+                case "boot1":
+                    text = window.itemsManager.boot1.foundDialogue;
+                    break
+                case "boot2":
+                    text = window.itemsManager.boot2.foundDialogue;
+                    break
+                case "sock":
+                    text = window.itemsManager.sock.foundDialogue;
+                    break
+                case "seed":
+                    text = window.itemsManager.seed.foundDialogue;
+                    break
+                case "fishingrod":
+                    text = window.itemsManager.fishingrod.foundDialogue;
+                    break
+                case "grave":
+                    text = window.itemsManager.grave.foundDialogue;
+                    break
+                case "mattsToy":
+                    text = window.itemsManager.mattsToy.foundDialogue;
+                    break
+                case "chloesToy":
+                    text = window.itemsManager.chloesToy.foundDialogue;
+                    break
+                case "elainesToy":
+                    text = window.itemsManager.elainesToy.foundDialogue;
+                    break
+                case "chantesToy":
+                    text = window.itemsManager.chantesToy.foundDialogue;
+                    break
+                case "linsToy":
+                    text = window.itemsManager.linsToy.foundDialogue;
+                    break
+            }
+            createSpeechBubble(title, (bounds.x -100).toString(), (bounds.y - 100).toString(), text);
             this.remove();
             addInventory(title, "url('./Art/inventory_" + title + ".png')")
         })
@@ -248,4 +294,30 @@ function initBird() {
     let bird = document.getElementById("bird");
     bird.addEventListener('dragover', handleDragOver, false);
     bird.addEventListener('drop', handleBirdDrop, false);
+}
+
+function makeComicDroppable() {
+    let comicDropSpace = document.getElementById("comicdrop");
+    comicDropSpace.addEventListener('dragover', handleDragOver, false);
+    comicDropSpace.addEventListener('drop', handleComicDrop, false);
+}
+
+function handleComicDrop(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+    let droppedTitle = e.dataTransfer.getData("text")
+    if (droppedTitle === "sock") {
+        window.itemsManager.flower.complete = true;
+        playAudio("SP_successfulmatch.wav")
+        storyComplete("flower")
+        let flower = document.getElementById("flower");
+        console.log(flower);
+        flower.style.backgroundImage = "url('./Art/click_flower_blossomed.png')";
+        document.getElementById("catFlower").style.visibility = "visible";
+    }
+    let sockItem = document.querySelector('[title="sock"]');
+    let comicdrop = document.getElementById("comicdrop");
+    sockItem.remove();
+    comicdrop.remove();
 }

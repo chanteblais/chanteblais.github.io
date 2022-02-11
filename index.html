@@ -11,24 +11,32 @@
 <div class="left"></div>
 <div class="right"></div>
 <div id="mask">
-    <div id="comic"></div>
-    <div id="background1" class="background z-0 bg-[url('./Art/Pan_BG.png')]"></div>
-    <div id="foreground1" class="background z-10 bg-[url('./Art/Pan_FG1.png')]"></div>
-    <div id="foreground2" class="background z-20 bg-[url('./Art/Pan_FG2.png')]">
+    <div id="birdComic"></div>
+    <div id="comic">
+        <div id="comicdrop"></div>
+    </div>
+    <div id="backgroundUL" class="background z-0 bg-[url('./Art/Pan_BG.png')]"></div>
+    <div id="foreground1" class="background z-30 bg-[url('./Art/Pan_FG1.png')]"></div>
+    <div id="foreground2" class="background z-40 bg-[url('./Art/Pan_FG2.png')]">
         <div id="bird" title="bird" class="narrative z-50 bg-no-repeat"></div>
+        <div id="foreground3Middle" class="background bg-no-repeat z-40 bg-[url('./Art/Pan_FG3_b.png')]"></div>
+        <div id="foreground3Left" class="background bg-no-repeat z-30 bg-[url('./Art/Pan_FG3_a.png')]"></div>
     </div>
-<!--    <div id="foreground3" class="background z-25 bg-[url('./Art/Pan_FG3.png')]"></div>-->
-    <div id="backgroundCovers" class="background z-5 bg-[url('./Art/Pan_UL_covers.png')]"></div>
     <div id="backgroundMain" class="background bg-[url('./Art/Pan_UL.png')]">
-        <div id="flower" title="flower" class="narrative z-50 bg-no-repeat"></div>
-        <div id="ball" title="ball" class="item z-50 bg-no-repeat"></div>
-        <div id="boot1" title="boot1" class="item z-50 bg-no-repeat"></div>
-        <div id="boot2" title="boot2" class="item z-50 bg-no-repeat"></div>
-        <div id="seed" title="seed" class="item z-50 bg-no-repeat"></div>
+        <div id="flower" title="flower" class="narrative z-20 bg-no-repeat"></div>
+        <div id="catFlower" title="flower" class="z-20 bg-no-repeat"></div>
+        <div id="ball" title="ball" class="item z-20 bg-no-repeat"></div>
+        <div id="boot1" title="boot1" class="item z-20 bg-no-repeat"></div>
+        <div id="boot2" title="boot2" class="item z-20 bg-no-repeat"></div>
+        <div id="seed" title="seed" class="item z-20 bg-no-repeat"></div>
+        <div id="sock" title="sock" class="item z-20 bg-no-repeat"></div>
+        <div id="mattsToy" title="mattsToy" class="interactable z-20 bg-no-repeat"></div>
+        <div id="grave" title="grave" class="z-50 bg-no-repeat"></div>
     </div>
+
 </div>
     <div id="inventory" class="bg-black-900 mt-2 flex flex-wrap items-center p-4 text-white" draggable="true">
-        <div class="inventoryItem bg-no-repeat border-2 border-white rounded-md w-24 h-24 mb-2 mr-2" ></div>
+        <div class="inventoryItem bg-no-repeat border-white rounded-md w-24 h-24 mb-4 mr-4" ></div>
     </div>
 </body>
 </html>

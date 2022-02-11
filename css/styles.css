@@ -23,12 +23,53 @@ body {
     opacity: 0;
 }
 
+#comicdrop {
+    position: fixed;
+    left: 760px;
+    top: 200px;
+    width: 400px;
+    height: 400px;
+}
+
+#birdComic {
+    z-index: 0;
+    left: 25%;
+    position: fixed;
+    background-image: url("../Art/Photograph.png");
+    background-repeat: no-repeat;
+    width: 868px;
+    height: 500px;
+    top: 150px;
+    transition: opacity 2s;
+    opacity: 0;
+}
+
 .background {
     position: absolute;
     top: 0;
     left: 0;
     width: 3057px;
     height: 750px;
+}
+
+#foreground1 {
+    pointer-events: none;
+}
+
+#foreground2 {
+    pointer-events: none;
+}
+
+#foreground3Left {
+    top: 0;
+    left: 3750px;
+    height: 348px;
+}
+
+#foreground3Middle {
+    top: 0;
+    left: 1367px;
+    height: 800px;
 }
 
 #inventory {
@@ -60,6 +101,7 @@ body {
 
 #bird {
     position: absolute;
+    pointer-events: visible;
     left: 1863px;
     top: 59px;
     height: 100px;
@@ -73,9 +115,20 @@ body {
     left: 1014px;
     top: 487px;
     height: 100px;
-    width: 100px;
+    width: 130px;
     background-image: url('../Art/click_flower.png');
     background-repeat: no-repeat;
+}
+
+#catFlower {
+    position: absolute;
+    left: 1014px;
+    top: 352px;
+    height: 300px;
+    width: 130px;
+    background-image: url('../Art/click_flower_cat.png');
+    background-repeat: no-repeat;
+    visibility: hidden;
 }
 
 #ball {
@@ -88,10 +141,20 @@ body {
     background-repeat: no-repeat;
 }
 
+#sock {
+    position: absolute;
+    left: 1474px;
+    top: 97px;
+    height: 100px;
+    width: 100px;
+    background-image: url('../Art/click_inventory_sock.png');
+    background-repeat: no-repeat;
+}
+
 #seed {
     position: absolute;
-    left: 696px;
-    top: 567px;
+    left: 1671px;
+    top: 447px;
     height: 100px;
     width: 100px;
     background-image: url('../Art/click_inventory_seed.png');
@@ -125,4 +188,24 @@ body {
     height: 150px;
     color: white;
     transition: opacity 2s;
+}
+
+#mattsToy {
+    position: absolute;
+    left: 1257px;
+    top: 433px;
+    height: 100px;
+    width: 140px;
+    background-image: url('../Art/click_002.png');
+    background-repeat: no-repeat;
+}
+
+#grave {
+    position: absolute;
+    left: 2607px;
+    top: 233px;
+    height: 252px;
+    width: 214px;
+    background-image: url('../Art/click_005.png');
+    background-repeat: no-repeat;
 }
