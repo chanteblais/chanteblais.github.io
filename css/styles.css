@@ -1,0 +1,128 @@
+body {
+    background-color: black;
+}
+
+#mask {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: 750px;
+    position: relative;
+}
+
+#comic {
+    z-index: 0;
+    left: 25%;
+    position: fixed;
+    background-image: url("../Art/comic_001_small.png");
+    background-repeat: no-repeat;
+    width: 868px;
+    height: 500px;
+    top: 150px;
+    transition: opacity 2s;
+    opacity: 0;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3057px;
+    height: 750px;
+}
+
+#inventory {
+    position: fixed;
+    width: 99.5vw;
+    height: 22%;
+    border-radius: 10px;
+}
+
+.inventoryItem {
+    visibility: hidden;
+}
+
+.left {
+    position: fixed;
+    width: 100px;
+    float: left;
+    height: 100%;
+    z-index: 10000;
+}
+
+.right {
+    position: fixed;
+    width: 10vw;
+    right: 0;
+    height: 100%;
+    z-index: 10000;
+}
+
+#bird {
+    position: absolute;
+    left: 1863px;
+    top: 59px;
+    height: 100px;
+    width: 100px;
+    background-image: url('../Art/click_bird.png');
+    background-repeat: no-repeat;
+}
+
+#flower {
+    position: absolute;
+    left: 1014px;
+    top: 487px;
+    height: 100px;
+    width: 100px;
+    background-image: url('../Art/click_flower.png');
+    background-repeat: no-repeat;
+}
+
+#ball {
+    position: absolute;
+    left: 600px;
+    top: 620px;
+    height: 100px;
+    width: 100px;
+    background-image: url('../Art/click_inventory_ball.png');
+    background-repeat: no-repeat;
+}
+
+#seed {
+    position: absolute;
+    left: 696px;
+    top: 567px;
+    height: 100px;
+    width: 100px;
+    background-image: url('../Art/click_inventory_seed.png');
+    background-repeat: no-repeat;
+}
+
+#boot1 {
+    position: absolute;
+    left: 1876px;
+    top: 562px;
+    height: 119px;
+    width: 121px;
+    background-image: url('../Art/click_inventory_boot1.png');
+    background-repeat: no-repeat;
+}
+
+#boot2 {
+    position: absolute;
+    left: 470px;
+    top: 527px;
+    height: 100px;
+    width: 121px;
+    background-image: url('../Art/click_inventory_boot2.png');
+    background-repeat: no-repeat;
+}
+
+.speech {
+    opacity: 0;
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    color: white;
+    transition: opacity 2s;
+}
