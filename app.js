@@ -9,6 +9,7 @@ class App {
         backgroundAudio.loop = true;
 
         initItems();
+        initInteractables();
         initBird();
         makeComicDroppable();
 
@@ -286,6 +287,64 @@ function initItems() {
             createSpeechBubble(title, (bounds.x -100).toString(), (bounds.y - 100).toString(), text);
             this.remove();
             addInventory(title, "url('./Art/inventory_" + title + ".png')")
+        })
+    })
+}
+
+function initInteractables() {
+    let items = document.querySelectorAll('.interactable');
+    let clickedFilepath = "./Art/click_"
+    items.forEach((item) => {
+        let title = item.getAttribute("title");
+        item.addEventListener('mouseover', function () {
+            this.style.backgroundImage = "url('" + clickedFilepath + title + "_hover.png')"
+        })
+        item.addEventListener('mouseleave', function () {
+            this.style.backgroundImage = "url('" + clickedFilepath + title + ".png')"
+        })
+        item.addEventListener('mousedown', function () {
+            let bounds = this.getBoundingClientRect();
+            let text;
+            switch (title) {
+                case "ball" :
+                    text = window.itemsManager.ball.foundDialogue;
+                    break
+                case "boot1":
+                    text = window.itemsManager.boot1.foundDialogue;
+                    break
+                case "boot2":
+                    text = window.itemsManager.boot2.foundDialogue;
+                    break
+                case "sock":
+                    text = window.itemsManager.sock.foundDialogue;
+                    break
+                case "seed":
+                    text = window.itemsManager.seed.foundDialogue;
+                    break
+                case "fishingrod":
+                    text = window.itemsManager.fishingrod.foundDialogue;
+                    break
+                case "grave":
+                    text = window.itemsManager.grave.foundDialogue;
+                    break
+                case "mattsToy":
+                    text = window.itemsManager.mattsToy.foundDialogue;
+                    break
+                case "chloesToy":
+                    text = window.itemsManager.chloesToy.foundDialogue;
+                    break
+                case "elainesToy":
+                    text = window.itemsManager.elainesToy.foundDialogue;
+                    break
+                case "chantesToy":
+                    text = window.itemsManager.chantesToy.foundDialogue;
+                    break
+                case "linsToy":
+                    text = window.itemsManager.linsToy.foundDialogue;
+                    break
+            }
+            console.log("Text: " + text)
+            createSpeechBubble(title, (bounds.x -100).toString(), (bounds.y - 100).toString(), text);
         })
     })
 }
