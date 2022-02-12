@@ -12,6 +12,7 @@ class App {
         initInteractables();
         initBird();
         makeComicDroppable();
+        initFlower();
 
         document.getElementById("backgroundMain").addEventListener('mousedown', async function () {
             // Click to play audio on start
@@ -22,6 +23,8 @@ class App {
                     console.log(error)
                 });
             }
+
+            playAudio("SP_forest.wav")
 
             // If a closable item is open, close it
             let closeableItem = document.querySelector('.closable');
@@ -359,6 +362,18 @@ function initBird() {
     })
     bird.addEventListener('dragover', handleDragOver, false);
     bird.addEventListener('drop', handleBirdDrop, false);
+}
+
+function initFlower() {
+    let flower = document.getElementById("flower");
+    flower.addEventListener('mouseover', function () {
+        if (!itemsManager.flower.complete)
+        this.style.backgroundImage = "url('./Art/click_flower_hover.png')";
+    })
+    flower.addEventListener('mouseleave', function () {
+        if (!itemsManager.flower.complete)
+            this.style.backgroundImage = "url('./Art/click_flower.png')";
+    })
 }
 
 function makeComicDroppable() {
