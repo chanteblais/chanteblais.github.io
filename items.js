@@ -32,7 +32,7 @@ class Items {
     seed = {
         "foundDialogue": "Our greatest dream is to end bird hunger."
     }
-    fishingrod = {
+    rod = {
         "foundDialogue": "Tranquil afternoons are good for the soul. "
     }
     grave = {
@@ -42,7 +42,7 @@ class Items {
         "foundDialogue": "This cardboard box and fuzzy squirrel belong to Brisa and Giles, feline guardians of Spiritswood audio designer Matthew Marteinsson."
     }
     chloesToy = {
-        "foundDialogue": "This dinosaur belongs to Leeloo, tiny canine muse of Spiritswood writer Chloë Lai."
+        "foundDialogue": "This dinosaur belongs to Leeloo, tiny canine muse of Spiritswood writer Chloe Lai."
     }
     elainesToy = {
         "foundDialogue": "This tasty cat grass belongs to Honey, purr-ty feline companion of Spiritswood artist Elaine Chen."

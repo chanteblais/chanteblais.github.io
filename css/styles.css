@@ -52,7 +52,12 @@ body {
     height: 750px;
 }
 
+#backgroundCovers{
+    pointer-events: none;
+}
+
 #foreground1 {
+    width: 3447px;
     pointer-events: none;
 }
 
@@ -143,8 +148,8 @@ body {
 
 #sock {
     position: absolute;
-    left: 1474px;
-    top: 97px;
+    left: 2568px;
+    top: 178px;
     height: 100px;
     width: 100px;
     background-image: url('../Art/click_inventory_sock.png');
@@ -208,4 +213,55 @@ body {
     width: 214px;
     background-image: url('../Art/click_grave.png');
     background-repeat: no-repeat;
+}
+
+#chloesToy {
+    position: absolute;
+    left: 1156px;
+    top: 429px;
+    height: 55px;
+    width: 94px;
+    background-image: url('../Art/click_chloesToy.png');
+    background-repeat: no-repeat;
+}
+
+#linsToy {
+    position: absolute;
+    left: 724px;
+    top: 240px;
+    height: 29px;
+    width: 25px;
+    background-image: url('../Art/click_linsToy.png');
+    background-repeat: no-repeat;
+}
+
+#chantesToy {
+    position: absolute;
+    left: 2843px;
+    top: 356px;
+    height: 130px;
+    width: 59px;
+    background-image: url('../Art/click_chantesToy.png');
+    background-repeat: no-repeat;
+}
+
+#elainesToy {
+    position: absolute;
+    left: 789px;
+    top: 366px;
+    height: 62px;
+    width: 53px;
+    background-image: url('../Art/click_elainesToy.png');
+    background-repeat: no-repeat;
+}
+
+#rod {
+    position: absolute;
+    left: 1398px;
+    top: 366px;
+    height: 301px;
+    width: 67px;
+    background-image: url('../Art/click_inventory_rod.png');
+    background-repeat: no-repeat;
+    pointer-events: visible;
 }

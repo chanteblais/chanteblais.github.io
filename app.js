@@ -43,9 +43,9 @@ class App {
                     x += scrollSpeed
                 }
                 backgroundMain.style.left = x;
-                backgroundUL.style.left = (x * 0.9).toString();
+                backgroundUL.style.left = (x * 0.85).toString();
                 foreground1.style.left = (x * 1.2).toString();
-                foreground2.style.left = (x * 1.8).toString();
+                foreground2.style.left = (x * 1.4).toString();
 
             }, 10);
         });
@@ -59,9 +59,9 @@ class App {
                     x -= scrollSpeed
                 }
                 backgroundMain.style.left = x;
-                backgroundUL.style.left = (x * 0.9).toString();
+                backgroundUL.style.left = (x * 0.85).toString();
                 foreground1.style.left = (x * 1.2).toString();
-                foreground2.style.left = (x * 1.8).toString();
+                foreground2.style.left = (x * 1.4).toString();
             }, 10);
         });
         document.querySelector('.right').addEventListener('mouseleave', function () {
@@ -130,7 +130,7 @@ async function narrationInteract(bounds, title) {
             text = window.itemsManager.bird.story[pos];
             window.itemsManager.bird.narrationPosition += 1;
             // Speech bubble offset
-            textOffsetx = -250;
+            textOffsetx = -100;
             textOffsety = 0;
             break
     }
@@ -159,7 +159,6 @@ function addInventory(title, url) {
 }
 
 function handleDragStart(e) {
-    console.log(e.target.title)
     e.dataTransfer.setData("text", e.target.title);
 }
 
@@ -220,10 +219,12 @@ async function createSpeechBubble(title, boundsX, boundsY, text) {
     speechBubble.appendChild(speechContent)
     speechBubble.classList.add('speech');
     speechBubble.setAttribute('title', title);
-    speechBubble.style.left = (boundsX).toString() + "px";
-    speechBubble.style.top = (boundsY).toString() + "px";
+    let parent = document.getElementById('backgroundMain');
+    parent.appendChild(speechBubble);
+    let parentBounds = parent.getBoundingClientRect();
+    speechBubble.style.left = (boundsX - parentBounds.x).toString() + "px";
+    speechBubble.style.top = (boundsY - parentBounds.y).toString() + "px";
     speechBubble.style.zIndex = "1000";
-    document.getElementById('backgroundMain').appendChild(speechBubble);
     await new Promise(resolve => setTimeout(resolve, 100));
     speechBubble.style.opacity = "1";
     await new Promise(resolve => setTimeout(resolve, 4000));
@@ -262,8 +263,8 @@ function initItems() {
                 case "seed":
                     text = window.itemsManager.seed.foundDialogue;
                     break
-                case "fishingrod":
-                    text = window.itemsManager.fishingrod.foundDialogue;
+                case "rod":
+                    text = window.itemsManager.rod.foundDialogue;
                     break
                 case "grave":
                     text = window.itemsManager.grave.foundDialogue;
@@ -343,7 +344,6 @@ function initInteractables() {
                     text = window.itemsManager.linsToy.foundDialogue;
                     break
             }
-            console.log("Text: " + text)
             createSpeechBubble(title, (bounds.x -100).toString(), (bounds.y - 100).toString(), text);
         })
     })
@@ -351,6 +351,12 @@ function initInteractables() {
 
 function initBird() {
     let bird = document.getElementById("bird");
+    bird.addEventListener('mouseover', function () {
+        this.style.backgroundImage = "url('./Art/click_bird_hover.png')"
+    })
+    bird.addEventListener('mouseleave', function () {
+        this.style.backgroundImage = "url('./Art/click_bird.png')"
+    })
     bird.addEventListener('dragover', handleDragOver, false);
     bird.addEventListener('drop', handleBirdDrop, false);
 }
@@ -371,7 +377,6 @@ function handleComicDrop(e) {
         playAudio("SP_successfulmatch.wav")
         storyComplete("flower")
         let flower = document.getElementById("flower");
-        console.log(flower);
         flower.style.backgroundImage = "url('./Art/click_flower_blossomed.png')";
         document.getElementById("catFlower").style.visibility = "visible";
     }
